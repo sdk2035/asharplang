@@ -1,69 +1,48 @@
-# Siguiente tarea propuesta asistida por IA
+# ASHARP-RE-002 — Ingeniería inversa del parser y del AST
 
-## ASHARP-RECOVERY-001 — Recuperar MGNAT y fijar el bootstrap histórico
-
-Estado: propuesta pendiente. Fecha: 2026-10-10.
-Prioridad: siguiente paso del [plan de compilación](reproducible-build-plan.md).
-Este documento especifica trabajo futuro; no afirma que los archivos hayan
-sido recuperados ni que el compilador se haya construido.
+Estado: propuesta pendiente. Predecesor: [UML de alto nivel](uml/informe-arquitectura.md).
+Entrada: archivo recuperado `mgnat20060606.zip`, SHA-256
+`23572280e6d5e89bcf94f4512279d83bad5c5c3ea32306da76ca94948c77c01d`.
 
 ## Objetivo
 
-Recuperar una distribución identificada de A#/MGNAT desde el sitio histórico,
-inventariar sus fuentes y seleccionar un entorno de bootstrap coherente con
-su receta original. Dejar una importación trazable y una receta revisable para
-la primera construcción Ada → CIL.
+Describir el subsistema formado por Par, Scn, Scans, Sinfo y Atree, vinculando
+la sintaxis concreta Ada con rutinas de parsing y nodos de sintaxis abstracta.
+El primer alcance será una unidad mínima con declaración de variable, expresión
+aritmética y asignación. La cobertura completa del lenguaje será incremental.
 
-## Entradas
+## Trabajo asistido por IA
 
-Las [seis referencias](compiler-references.md) cumplen papeles distintos:
-A# guía la recuperación; GNU Ada y el archivo GNAT/SPARK aportan candidatos
-históricos; ada-lang.io orienta un entorno Ada actual de comparación;
-GNAT LLVM y SPARK aportan referencias posteriores de backend y verificación.
+1. Inventariar especificaciones, cuerpos y subunidades `par-*.adb`, y registrar
+   archivo y línea para cada unidad y operación pública.
+2. Identificar tokens y operaciones léxicas de Scans/Scn y dependencias de Par.
+3. Extraer clases de nodos, campos y accesores de Sinfo; describir almacenamiento
+   e identificadores de Atree y constructores Nmake/Tbuild cuando intervengan.
+4. Producir UML de paquetes y operaciones principales del subsistema.
+5. Crear una matriz regla sintáctica → rutina del parser → constructor/nodo AST
+   → referencia de código, empezando por el alcance mínimo.
+6. Documentar restricciones estructurales del AST por separado de reglas de
+   resolución de nombres y tipos, que se analizarán posteriormente en Sem.
+7. Diseñar fixtures positivos y negativos con resultados esperados. Marcar como
+   propuestos todos los resultados que no se hayan obtenido ejecutando el compilador.
 
-## Trabajo propuesto
+## Entregables
 
-1. Seguir los enlaces del sitio A# y localizar una versión concreta de
-   `mgnat.zip`; registrar disponibilidad de `msil2ada.zip` por separado.
-2. Descargar los materiales disponibles, calcular SHA-256 y registrar URL,
-   fecha, versión declarada, tamaño y licencia por componente.
-3. Extraer e inventariar frontend, backend CIL, runtime, Makefiles, ejemplos y
-   dependencias. Comparar `COMPLIANCE.txt` con la copia existente.
-4. Revisar Makefile/jMakefile y documentar GNAT para Windows, shell, herramientas
-   .NET/ILASM, rutas y orden de construcción exigidos por esa versión.
-5. Seleccionar candidatos de bootstrap desde las referencias históricas.
-   Fijar versiones y justificar compatibilidad; registrar dudas sin convertirlas
-   en requisitos confirmados. Mantener aparte el entorno Ada moderno.
-6. Importar las fuentes redistribuibles con avisos de licencia y preparar una
-   receta de VM o entorno y comandos derivados de los Makefiles recuperados.
-7. Informar si se puede iniciar la primera construcción y enumerar los bloqueos
-   restantes. La ejecución completa y los fixtures pertenecen al siguiente hito
-   si requieren herramientas aún no disponibles.
+- `docs/reverse-engineering/parser-ast.md`: explicación y límites de cobertura.
+- Diagrama UML editable y vista SVG del subsistema.
+- CSV de unidades, operaciones y dependencias con trazabilidad.
+- Matriz de sintaxis y AST y fixtures mínimos.
 
-## Entregables previstos
+## Aceptación
 
-- `docs/recovery-report.md`: procedencia, comparación, decisiones y bloqueos.
-- `manifests/mgnat-sources.json`: archivos, versiones, tamaños, SHA-256 y licencias.
-- `docs/bootstrap-environment.md`: herramientas fijadas y receta revisable.
-- Fuentes importadas preservando su estructura y avisos, cuando se establezcan
-  sus condiciones de redistribución.
+Cada relación del UML y cada fila de la matriz debe enlazar con evidencia
+inspeccionada. Distinguir unidad Ada real de agrupación conceptual y asociación
+de dependencia. Validar que los archivos y líneas citados corresponden al archivo
+identificado. No inventar una gramática completa ni atribuir a Sinfo reglas
+semánticas que residen en Sem. La aprobación del documento no demuestra un build.
 
-## Criterios de aceptación
+## Orden posterior
 
-- Al menos una distribución MGNAT recuperada e identificada por SHA-256,
-  con fuentes y avisos inspeccionados.
-- Inventario que distingue fuentes, binarios, dependencias y elementos ausentes.
-- Requisitos confirmados vinculados a archivos o instrucciones de esa versión.
-- Manifiesto sin versiones ni checksums inventados.
-- Receta que identifica plataforma y comandos reales, con bloqueos explícitos.
-- Revisión humana de procedencia, licencias y cambios antes de aceptar el hito.
-
-Si los archivos no están disponibles, entregar un informe de búsquedas y enlaces
-fallidos. Ese resultado documenta el bloqueo, pero no completa la recuperación.
-
-## Asistencia de IA
-
-La IA puede localizar candidatos, comparar archivos, extraer dependencias y
-redactar manifiestos y recetas. Las conclusiones deben sustentarse en materiales
-inspeccionados. No asumir que GNAT moderno o LLVM reemplazan el bootstrap MGNAT
-ni que verificación SPARK acredita la ejecución CLI.
+Después: Sem/Expander, seguido de Jx/JVM/MSIL_Emit y runtime.
+La importación completa de fuentes, revisión de licencias por componente y
+bootstrap reproducible siguen pendientes como trabajo de recuperación.

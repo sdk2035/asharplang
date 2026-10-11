@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+package "Orquestación" as Driver { component GNAT1drv }
+package "Frontend" as FE { component Frontend }
+package "Léxico y parser" as Parser { component Scn
+component Scans
+component Par }
+package "Modelo compartido" as Model { component Atree
+component Sinfo
+component Einfo
+component Types
+component Namet }
+package "Semántica" as Semantics { component Sem
+component "Sem_Ch* / Sem_*" }
+package "Expansión" as Expansion { component Expander
+component "Exp_Ch* / Exp_*" }
+package "Adaptador backend" as Backend { component Back_End
+component "jbackend.adb" }
+package "Traducción Ada" as Translation { component Jx_Drive
+component "Jx_Ch* / Jx_Decl" }
+package "Modelo de código" as Code { component JVM
+component "JVM.API / Code / Map / Info / Pool" }
+package "Emisión MSIL" as Emit { component "JVM.MSIL_Emit" }
+Driver ..> FE
+Driver ..> Backend
+FE ..> Parser
+FE ..> Semantics
+FE ..> Model
+Parser ..> Model
+Semantics ..> Model
+Semantics ..> Expansion
+Expansion ..> Semantics
+Backend ..> Translation
+Translation ..> Code
+Translation ..> Model
+Code ..> Emit
+Emit ..> Code
+note bottom of Backend
+Makefile selecciona jbackend.adb como back_end.adb.
+end note
+note bottom of Code
+Nombre JVM heredado; JVM.adb llama MSIL_Emit.
+end note
+@enduml

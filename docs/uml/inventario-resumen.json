@@ -1,0 +1,12 @@
+{
+  "src": 1570,
+  "bin": 10,
+  "dll": 5,
+  "dll_compact": 4,
+  "include": 7942,
+  "include_compact": 7636,
+  "lib": 1867,
+  "obj": 649,
+  "tests": 609,
+  "tutorials": 2
+}
