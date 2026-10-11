@@ -1,8 +1,9 @@
 # A# (A Sharp)
 
 A# es un proyecto de adaptación de Ada a la plataforma .NET (CLI), asociado
-históricamente con MGNAT. Este repositorio conserva actualmente documentación;
-**no contiene un compilador ni un runtime construibles**.
+históricamente con MGNAT. El archivo MGNAT histórico ha sido recuperado localmente y analizado para generar
+un UML de alto nivel. Este repositorio publica la documentación de ingeniería
+inversa; la importación completa de fuentes y el build reproducible siguen pendientes.
 
 ## Estado verificado
 
@@ -40,11 +41,18 @@ git ls-tree -r HEAD
 Consulta las [seis referencias y su papel en el compilador](docs/compiler-references.md):
 GNAT LLVM, el archivo de fuentes SPARK GPL 2014, SPARK 2014, el sitio histórico de A#, GNU Ada en SourceForge y ada-lang.io.
 
+## Avance de ingeniería inversa
+
+[UML de paquetes principales y evidencia](docs/uml/informe-arquitectura.md), obtenido
+por análisis estático de `mgnat20060606.zip`. Incluye PlantUML editable, SVG,
+inventario y dependencias. La ruta de emisión observada usa `JVM.MSIL_Emit`.
+No se ejecutaron el compilador ni las pruebas históricas.
+
 ## Próxima tarea asistida por IA
 
-[ASHARP-RECOVERY-001: recuperar MGNAT y fijar el bootstrap histórico](docs/next-ai-assisted-task.md).
+[ASHARP-RE-002 — Ingeniería inversa del parser y del AST](docs/next-ai-assisted-task.md):
+detallar Par, Scn, Scans, Sinfo y Atree y trazar reglas → rutinas → nodos AST.
 
-Recuperar una distribución original, verificar fuentes y licencias, calcular
-checksums y preparar un manifiesto y una receta de entorno con herramientas
-fijadas. La propuesta incluye entregables y criterios de aceptación.
-La construcción y ejecución Ada → CIL siguen pendientes.
+La [tarea de recuperación](docs/recovery-task.md) continúa parcialmente:
+el archivo está disponible localmente; procedencia, licencias por componente,
+importación y entorno de bootstrap todavía requieren validación.
