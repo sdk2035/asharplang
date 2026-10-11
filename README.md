@@ -35,6 +35,11 @@ cd asharplang
 git ls-tree -r HEAD
 ```
 
+## Referencias de implementación
+
+Consulta las [cuatro referencias y su papel en el compilador](docs/compiler-references.md):
+GNAT LLVM, el archivo de fuentes SPARK GPL 2014, SPARK 2014 y el sitio histórico de A#.
+
 ## Próxima tarea asistida por IA
 
 Localizar un archivo original de MGNAT/A#, verificar su procedencia y licencia,

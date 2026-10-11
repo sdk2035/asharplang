@@ -12,6 +12,15 @@ La base inventariada carece de fuentes y receta de construcción. No se inventan
 versiones de GCC/GNAT, comandos de bootstrap ni imágenes de contenedor.
 La primera ejecución queda condicionada a recuperar esos materiales.
 
+## Referencias para concretar la receta
+
+Las [referencias de implementación](compiler-references.md) incluyen el sitio
+histórico de A#, que describe GNAT para Windows, shell Cygwin, Makefiles en
+`src` y `src/lib`, y Visual Studio .NET para `mgnatcs.dll`.
+Estas son pistas documentales; las versiones exactas y la receta del archivo
+recuperado aún deben comprobarse. GNAT LLVM y SPARK se evaluarán como referencias
+de arquitectura y verificación, con compatibilidad explícita por versión.
+
 ## 1. Recuperación y procedencia
 
 1. Localizar una distribución original y sus instrucciones de instalación.
