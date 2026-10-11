@@ -37,12 +37,14 @@ git ls-tree -r HEAD
 
 ## Referencias de implementación
 
-Consulta las [cuatro referencias y su papel en el compilador](docs/compiler-references.md):
-GNAT LLVM, el archivo de fuentes SPARK GPL 2014, SPARK 2014 y el sitio histórico de A#.
+Consulta las [seis referencias y su papel en el compilador](docs/compiler-references.md):
+GNAT LLVM, el archivo de fuentes SPARK GPL 2014, SPARK 2014, el sitio histórico de A#, GNU Ada en SourceForge y ada-lang.io.
 
 ## Próxima tarea asistida por IA
 
-Localizar un archivo original de MGNAT/A#, verificar su procedencia y licencia,
-registrar su checksum e importar las fuentes con un manifiesto de dependencias.
-Después se podrá concretar y ejecutar el plan de construcción; hasta entonces,
-la compilación y la ejecución Ada → CIL siguen pendientes.
+[ASHARP-RECOVERY-001: recuperar MGNAT y fijar el bootstrap histórico](docs/next-ai-assisted-task.md).
+
+Recuperar una distribución original, verificar fuentes y licencias, calcular
+checksums y preparar un manifiesto y una receta de entorno con herramientas
+fijadas. La propuesta incluye entregables y criterios de aceptación.
+La construcción y ejecución Ada → CIL siguen pendientes.

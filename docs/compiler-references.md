@@ -11,6 +11,9 @@ validados de este repositorio.
 | [SPARK 2014](https://github.com/robotics-intelligent-systems/spark2014) | Referencia para análisis, verificación y selección de versiones compatibles del frontend | Su integración con A# y con el runtime CLI queda por diseñar y validar |
 | [Sitio histórico de A#](https://asharp.martincarlisle.com/) | Fuente primaria para localizar MGNAT, MSIL2Ada y reconstruir el entorno original | Instrucciones históricas, todavía no reproducidas aquí |
 
+| [GNU Ada en SourceForge](https://sourceforge.net/projects/gnuada/) | Investigar distribuciones y materiales históricos de herramientas GNAT | Su oferta actual se centra en GNAT Studio para macOS; no acredita una distribución A#/MGNAT |
+| [Ada community: ada-lang.io](https://ada-lang.io/) | Orientar la selección de herramientas Ada actuales, Alire y recursos del lenguaje | La disponibilidad de herramientas actuales no demuestra compatibilidad con el bootstrap histórico de MGNAT |
+
 ## A#/MGNAT: recuperación prioritaria
 
 El [sitio de A#](https://asharp.martincarlisle.com/) señala SourceForge como
@@ -71,3 +74,16 @@ que el backend o runtime .NET preserve esa propiedad.
 3. Estudiar GNAT LLVM como referencia de arquitectura para una posible evolución.
 4. Evaluar SPARK sobre un subconjunto definido con frontend compatible.
 5. Publicar evidencia de cada experimento antes de declarar integración o soporte.
+
+## GNU Ada y comunidad Ada
+
+[GNU Ada en SourceForge](https://sourceforge.net/projects/gnuada/) conserva
+publicaciones históricas y actualmente describe paquetes GNAT Studio para macOS.
+Su propia descripción remite a ada-lang.io y Alire para compiladores y paquetes.
+Uso propuesto: buscar candidatos de bootstrap con versión y plataforma
+identificadas; comprobar cada archivo antes de incorporarlo al manifiesto.
+
+[Ada-lang.io](https://ada-lang.io/) presenta recursos del lenguaje y acceso al
+ecosistema mediante Alire. Uso propuesto: preparar un entorno Ada actual de
+referencia para fixtures, separado del entorno histórico de A#.
+La comparación semántica debe limitarse al subconjunto Ada admitido por ambos.
